@@ -1,0 +1,21 @@
+# environment
+.venv/
+.env
+__pycache__/
+*.vscode/
+
+# data, models and outputs
+data/
+results/
+temp/
+*.hdf5
+*.npy
+*.npz
+
+# figures
+*.pdf
+*.svg
+*.png
+*.gif
+
+!assets/**

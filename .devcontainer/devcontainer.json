@@ -1,0 +1,26 @@
+// Python + uv dev container. JAX's CUDA libraries are installed by `uv sync` (jax[cuda12]),
+// so only an NVIDIA driver and the NVIDIA container toolkit are needed on the host.
+{
+	"name": "3d-ultrasound-diffusion",
+	"image": "mcr.microsoft.com/devcontainers/python:3.12",
+	"runArgs": ["--gpus", "all", "--shm-size", "16g"],
+	"containerEnv": {
+		"KERAS_BACKEND": "jax",
+		"UV_PROJECT_ENVIRONMENT": "/home/vscode/.venv"
+	},
+	"postCreateCommand": "pip install --user uv && ~/.local/bin/uv sync",
+	// Mount your dataset, e.g. (then set US3D_DATA_DIR=/data in .env):
+	// "mounts": ["source=/path/to/data,target=/data,type=bind,readonly"],
+	"customizations": {
+		"vscode": {
+			"settings": {
+				"python.defaultInterpreterPath": "/home/vscode/.venv/bin/python"
+			},
+			"extensions": [
+				"ms-python.python",
+				"charliermarsh.ruff",
+				"h5web.vscode-h5web"
+			]
+		}
+	}
+}
